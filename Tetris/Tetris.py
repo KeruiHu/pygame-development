@@ -30,8 +30,8 @@ LIGHTBLUE = pygame.Color(0, 255, 255)
 ORANGE = pygame.Color(255, 128, 0)
 """
 class Game:
-    def __init__(self,level):
-        self.level = level
+    def __init__(self):
+        self.level = 4
         self.score = 0
         self.base = []
         self.checkBase = False
@@ -214,7 +214,7 @@ class Game:
         pygame.display.update()
 
     def GameOver(self):
-        GameOver_Surf = defaultFont.render('Game Over!(R/Q)', True, GREY)
+        GameOver_Surf = defaultFont.render('Game Over!', True, GREY)
         GameOver_Rect = GameOver_Surf.get_rect()
         GameOver_Rect.midtop = (100, 20)
         DISPLAY.blit(GameOver_Surf, GameOver_Rect)
@@ -226,6 +226,43 @@ class Game:
         sys.exit()
 
     def run(self):
+        wait = False
+        while wait == False:
+            ChooseLevel_Surf = defaultFont.render('Choose Level: 1~9', True, GREY)
+            ChooseLevel_Rect = ChooseLevel_Surf.get_rect()
+            ChooseLevel_Rect.midtop = (100, 20)
+            DISPLAY.blit(ChooseLevel_Surf, ChooseLevel_Rect)
+            pygame.display.flip()
+            for num in pygame.event.get():
+                if num.type == KEYDOWN:
+                    if(num.key == K_1):
+                        self.level = 1
+                        wait = True
+                    if(num.key == K_2):
+                        self.level = 2
+                        wait = True
+                    if(num.key == K_3):
+                        self.level = 3
+                        wait = True
+                    if(num.key == K_4):
+                        self.level = 4
+                        wait = True
+                    if(num.key == K_5):
+                        self.level = 5
+                        wait = True
+                    if(num.key == K_6):
+                        self.level = 6
+                        wait = True
+                    if(num.key == K_7):
+                        self.level = 7
+                        wait = True
+                    if(num.key == K_8):
+                        self.level = 8
+                        wait = True
+                    if(num.key == K_9):
+                        self.level = 9
+                        wait = True
+
         self.getcubetype()
         self.generateCube()
         self.cubeExist = True
@@ -234,7 +271,7 @@ class Game:
             if not self.cubeExist:
                 self.generateCube()
             for event in pygame.event.get():
-                print(event)
+                ##print(event)
                 if event.type == pygame.QUIT:
                     self.isRun = False
                     pygame.quit()
@@ -314,10 +351,10 @@ class Game:
 
 
 def main():
-    theGame = Game(4)
-    print("game begin!!")
-    theGame.run()
-    print("game end.")
+	theGame = Game()
+	print("game begin!!")
+	theGame.run()
+	print("game end.")
 
 if __name__ == "__main__":
     main()
